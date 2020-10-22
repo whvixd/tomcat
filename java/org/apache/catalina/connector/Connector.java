@@ -1097,7 +1097,7 @@ public class Connector extends LifecycleMBeanBase  {
         setState(LifecycleState.STARTING);
 
         try {
-            // 启动 Http11Protocol ...extends AbstractProtocol#start
+            // whvixd:启动 Http11Protocol ...extends AbstractProtocol#start
             protocolHandler.start();
         } catch (Exception e) {
             throw new LifecycleException(

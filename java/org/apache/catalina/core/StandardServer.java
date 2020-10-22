@@ -417,6 +417,7 @@ public final class StandardServer extends LifecycleMBeanBase implements Server {
         }
 
         // Set up a server socket to wait on
+        // whvixd:启动监听SHUTDOWN socket 默认port:8005
         try {
             awaitSocket = new ServerSocket(port, 1,
                     InetAddress.getByName(address));
@@ -431,6 +432,7 @@ public final class StandardServer extends LifecycleMBeanBase implements Server {
             awaitThread = Thread.currentThread();
 
             // Loop waiting for a connection and a valid command
+            // whvixd:循环接收请求
             while (!stopAwait) {
                 ServerSocket serverSocket = awaitSocket;
                 if (serverSocket == null) {
@@ -445,7 +447,9 @@ public final class StandardServer extends LifecycleMBeanBase implements Server {
                     long acceptStartTime = System.currentTimeMillis();
                     try {
                         socket = serverSocket.accept();
+                        // whvixd:10秒超时
                         socket.setSoTimeout(10 * 1000);  // Ten seconds
+                        // whvixd:获取接收的io
                         stream = socket.getInputStream();
                     } catch (SocketTimeoutException ste) {
                         // This should never happen but bug 56684 suggests that
@@ -475,6 +479,7 @@ public final class StandardServer extends LifecycleMBeanBase implements Server {
                     while (expected > 0) {
                         int ch = -1;
                         try {
+                            // whvixd:读流
                             ch = stream.read();
                         } catch (IOException e) {
                             log.warn(sm.getString("standardServer.accept.readError"), e);
@@ -499,6 +504,7 @@ public final class StandardServer extends LifecycleMBeanBase implements Server {
                 }
 
                 // Match against our command string
+                // whvixd:SHUTDOWN 命令，停止java进程
                 boolean match = command.toString().equals(shutdown);
                 if (match) {
                     log.info(sm.getString("standardServer.shutdownViaPort"));

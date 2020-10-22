@@ -336,6 +336,7 @@ public final class Bootstrap {
      */
     public void start() throws Exception {
         if (catalinaDaemon == null) {
+            // whvixd:catalinaDaemon 指向 Catalina
             init();
         }
 
@@ -433,6 +434,11 @@ public final class Bootstrap {
      *
      * @param args Command line arguments to be processed
      */
+
+    /**
+     * whvixd:
+     * bin/startup.sh -> catalina.sh start -> Bootstrap 启动类
+     */
     public static void main(String args[]) {
 
         synchronized (daemonLock) {
@@ -471,6 +477,7 @@ public final class Bootstrap {
             } else if (command.equals("start")) {
                 daemon.setAwait(true);
                 daemon.load(args);
+                // whvixd:启动 Bootstrap 入口
                 daemon.start();
                 if (null == daemon.getServer()) {
                     System.exit(1);

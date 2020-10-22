@@ -223,6 +223,7 @@ fi
 if [ ! -z "$CLASSPATH" ] ; then
   CLASSPATH="$CLASSPATH":
 fi
+# whvixd:#将bootstrap.jar作为CLASSPATH
 CLASSPATH="$CLASSPATH""$CATALINA_HOME"/bin/bootstrap.jar
 
 if [ -z "$CATALINA_OUT" ] ; then
@@ -409,6 +410,7 @@ elif [ "$1" = "run" ]; then
       echo "Using Security Manager"
     fi
     shift
+#    whvixd:ava命令执行Bootstrap类的main方法，将start作为参数传入
     eval exec "\"$_RUNJAVA\"" "\"$CATALINA_LOGGING_CONFIG\"" $LOGGING_MANAGER "$JAVA_OPTS" "$CATALINA_OPTS" \
       -D$ENDORSED_PROP="\"$JAVA_ENDORSED_DIRS\"" \
       -classpath "\"$CLASSPATH\"" \

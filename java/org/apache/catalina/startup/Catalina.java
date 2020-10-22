@@ -533,6 +533,7 @@ public class Catalina {
         if (loaded) {
             return;
         }
+        // whvixd:是否启动标识
         loaded = true;
 
         long t1 = System.nanoTime();
@@ -626,7 +627,7 @@ public class Catalina {
                 }
             }
         }
-
+        // whvixd: todo server在哪初始化的
         getServer().setCatalina(this);
         getServer().setCatalinaHome(Bootstrap.getCatalinaHomeFile());
         getServer().setCatalinaBase(Bootstrap.getCatalinaBaseFile());
@@ -669,6 +670,9 @@ public class Catalina {
 
     /**
      * Start a new server instance.
+     */
+    /**
+     * whvixd:启动服务
      */
     public void start() {
 
@@ -719,6 +723,7 @@ public class Catalina {
         }
 
         if (await) {
+            // whvixd:启动SHUTDOWN，监听接收停止Java进程请求
             await();
             stop();
         }

@@ -508,6 +508,7 @@ public class NioEndpoint extends AbstractJsseEndpoint<NioChannel> {
                     if (running && !paused) {
                         // setSocketOptions() will hand the socket off to
                         // an appropriate processor if successful
+                        // whvixd:处理socket
                         if (!setSocketOptions(socket)) {
                             closeSocket(socket);
                         }

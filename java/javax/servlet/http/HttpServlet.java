@@ -621,6 +621,8 @@ public abstract class HttpServlet extends GenericServlet {
      *
      * @see javax.servlet.Servlet#service
      */
+    // whvixd:service
+    // spring中 FrameworkServlet#service  调用 DispatcherServlet#doService
     protected void service(HttpServletRequest req, HttpServletResponse resp)
         throws ServletException, IOException {
 

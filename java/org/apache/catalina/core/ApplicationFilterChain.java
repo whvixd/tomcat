@@ -222,12 +222,14 @@ public final class ApplicationFilterChain implements FilterChain {
                 Principal principal =
                     ((HttpServletRequest) req).getUserPrincipal();
                 Object[] args = new Object[]{req, res};
+                // whvixd:invoke HttpServletRequest
                 SecurityUtil.doAsPrivilege("service",
                                            servlet,
                                            classTypeUsedInService,
                                            args,
                                            principal);
             } else {
+                // whvixd:invoke request
                 servlet.service(request, response);
             }
         } catch (IOException | ServletException | RuntimeException e) {

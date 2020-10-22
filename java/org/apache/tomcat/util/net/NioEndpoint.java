@@ -452,6 +452,9 @@ public class NioEndpoint extends AbstractJsseEndpoint<NioChannel> {
      * The background thread that listens for incoming TCP/IP connections and
      * hands them off to an appropriate processor.
      */
+    /**
+     * whvixd:启动nio socket，loop to accept io
+     */
     protected class Acceptor extends AbstractEndpoint.Acceptor {
 
         @Override

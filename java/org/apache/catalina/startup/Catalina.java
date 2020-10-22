@@ -296,6 +296,7 @@ public class Catalina {
                                  "org.apache.catalina.core.StandardServer",
                                  "className");
         digester.addSetProperties("Server");
+        // whvixd:反射调用setServer方法，设置server
         digester.addSetNext("Server",
                             "setServer",
                             "org.apache.catalina.Server");
@@ -544,6 +545,7 @@ public class Catalina {
         initNaming();
 
         // Create and execute our Digester
+        // whvixd:创建server.xml中相应对象 --> 基于JMX来实现的 -> ManagementFactory
         Digester digester = createStartDigester();
 
         InputSource inputSource = null;
@@ -637,6 +639,7 @@ public class Catalina {
 
         // Start the new server
         try {
+            // whvixd:初始化server.xml中的对象
             getServer().init();
         } catch (LifecycleException e) {
             if (Boolean.getBoolean("org.apache.catalina.startup.EXIT_ON_INIT_FAILURE")) {
@@ -689,6 +692,7 @@ public class Catalina {
 
         // Start the new server
         try {
+            // whvixd:StandardServer
             getServer().start();
         } catch (LifecycleException e) {
             log.fatal(sm.getString("catalina.serverStartFail"), e);

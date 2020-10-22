@@ -446,6 +446,7 @@ public final class Bootstrap {
                 // Don't set daemon until init() has completed
                 Bootstrap bootstrap = new Bootstrap();
                 try {
+                    // whvixd: this.catalinaDaemon 指向 创建的Catalina对象
                     bootstrap.init();
                 } catch (Throwable t) {
                     handleThrowable(t);
@@ -476,8 +477,9 @@ public final class Bootstrap {
                 daemon.stop();
             } else if (command.equals("start")) {
                 daemon.setAwait(true);
+                // whvixd: 调用 Catalina#load,创建并调用server.xml中对象的init**方法
                 daemon.load(args);
-                // whvixd:启动 Bootstrap 入口
+                // whvixd:启动 Bootstrap 入口，反射调用 Catalina#start
                 daemon.start();
                 if (null == daemon.getServer()) {
                     System.exit(1);

@@ -674,7 +674,7 @@
   <target name="compile-prepare">
     <!-- Add the builtin catalina.properties -->
     <copy todir="java/org/apache/catalina/startup"
-          file="conf/catalina.properties" encoding="ISO-8859-1">
+          file="home/conf/catalina.properties" encoding="ISO-8859-1">
       <filterset refid="version.filters"/>
     </copy>
     <!-- Copy jdbc-pool documentation -->
@@ -1110,7 +1110,7 @@
     <!-- Copy static resource files -->
     <copy todir="${tomcat.build}/conf" encoding="ISO-8859-1">
       <filterset refid="version.filters"/>
-      <fileset dir="conf">
+      <fileset dir="home/conf">
         <include name="**/*.policy"/>
         <include name="**/*.xml"/>
         <include name="**/*.xsd"/>

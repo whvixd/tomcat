@@ -149,6 +149,10 @@
 
 #### 8. 添加启动程序，并编译
 
+```
 Main class: org.apache.catalina.startup.Bootstrap
-VM options:-Dcatalina.home="/Users/xx/Documents/workspace/idea/tomcat/home" -Dfile.encoding=UTF-8
-working dirtory:/Users/didi/Documents/workspace/idea/tomcat
+
+VM options: -Dcatalina.home="/Users/xx/Documents/workspace/idea/tomcat/home" -Dfile.encoding=UTF-8
+
+working dirtory: /Users/xx/Documents/workspace/idea/tomcat
+```
